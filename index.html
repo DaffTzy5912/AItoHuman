@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI To Teks Human</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  margin: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: rotateBackground 10s infinite linear;
+}
+
+@keyframes rotateBackground {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff7eb3, #ff758c);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  resize: vertical;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+textarea:focus {
+  border-color: #ff7eb3;
+  box-shadow: 0 0 10px rgba(255, 126, 179, 0.5);
+  outline: none;
+}
+
+button {
+  display: inline-block;
+  width: 100%;
+  padding: 15px;
+  margin: 20px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: skewX(-45deg);
+  transition: left 0.5s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+.output-textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pengubah Teks AI To Teks Human</h2>
+    <label for="inputText">Teks AI:</label>
+    <textarea id="inputText" rows="6" placeholder="Masukkan teks hasil AI di sini..."></textarea>
+
+    <button onclick="ubahTeks()">Ubah Jadi Teks Human</button>
+
+    <label for="outputText">Teks Human:</label>
+    <textarea id="outputText" rows="6" readonly placeholder="Hasil akan muncul di sini..." class="output-textarea"></textarea>
+  </div>
+
+  <script>
+    function ubahTeks() {
+      const input = document.getElementById('inputText').value;
+
+      let output = input
+        .replace(/\bberikut ini\b/gi, 'jadi begini')
+        .replace(/\bmemungkinkan\b/gi, 'bisa')
+        .replace(/\bdengan demikian\b/gi, 'makanya')
+        .replace(/\bmenggunakan\b/gi, 'pakai')
+        .replace(/\btersebut\b/gi, '')
+        .replace(/\bserta\b/gi, 'dan')
+        .replace(/\bnamun\b/gi, 'tapi');
+
+      document.getElementById('outputText').value = output;
+    }
+  </script>
+</body>
+</html>
